@@ -17,7 +17,7 @@ import (
 }
 
 func (m *MemRepo) RunInMemoryRepo() (*config.Config, error) {
-     return &m.C{
+     return &m.Config{
      W:  fx.Provide(ds.MutexWrap(datastore.NewMapDatastore())), nil
      }
 }
