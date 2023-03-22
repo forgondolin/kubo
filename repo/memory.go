@@ -11,13 +11,6 @@ import (
 
 )
 
-    type MemRepo struct {
-    C *config.Config
-    W  Datastore
-}
-
-func (m *MemRepo) RunInMemoryRepo() (*config.Config, error) {
-     return &m.Config{
-     W:  fx.Provide(ds.MutexWrap(datastore.NewMapDatastore())), nil
-     }
-}
+fx.Provide(func() datastore.Datastore {
+  return ds.MutexWrap(datastore.NewMapDatastore())
+})
